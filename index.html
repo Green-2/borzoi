@@ -39,9 +39,9 @@
         .center{
             padding:-10vh;
         }
-
     </style>
     <script type="text/javascript">
+        // Probably half of this is stolen from stack overflow. At least I understand it.
         function getSourceAsDOM(url)
         {
             const xmlhttp = new XMLHttpRequest();
@@ -50,20 +50,20 @@
             const parser = new DOMParser();
             return parser.parseFromString(xmlhttp.responseText,"text/html");
         }
-
         function removeElementsByClass(className, thedoc){
             const elements = thedoc.getElementsByClassName(className);
             while(elements.length > 0){
                 elements[0].parentNode.removeChild(elements[0]);
             }
         }
-
         function getRandomInt(min, max) {
             min = Math.ceil(min);
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
         }
+        // Feel free to suggest other search terms
         const search_terms = ["long+nose+dog", "borzoi", "long+nose+borzoi", "meme+borzoi", "didntidoitforyou+dog"];
+        //Initializing all of this only once at the first load to reduce load time
         const searchterm = search_terms[getRandomInt(0,search_terms.length-1)];
         const url = "https://fr.images.search.yahoo.com/search/images;?p="+searchterm;
         const mydoc = getSourceAsDOM(url);
@@ -71,9 +71,8 @@
 
         function pickImage(mydoc) {
             let images = mydoc.getElementsByTagName('img');
-            console.log("length of images : "+ images.length);
             let theimage = images.item(getRandomInt(0,images.length));
-            if(theimage.src === undefined && theimage.dataset.src === undefined){
+            if(theimage.src === undefined){
                 theimage = pickImage(url);
             }
             return theimage;
@@ -82,6 +81,7 @@
 <body>
 
 
+<!--Yes. It is bad. Gets the job done though. -->
 <div class="borzoirow">
     <img class="borzoi" src="" alt="borzoi">
     <span></span>
