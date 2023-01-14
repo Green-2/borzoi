@@ -1,3 +1,11 @@
+@keyframes hamburmusk {
+    from {
+        
+        transform: scale(0.2);
+    } to {
+        transform: scale(2);
+    }
+}
 @keyframes borzoi {
     from{
         transform:rotate3d(1,1,1,0deg);
@@ -6,25 +14,55 @@
         transform:rotate3d(1,1,1,360deg);
     }
 }
+
+@keyframes rotate {
+    from {
+        transform: rotateZ(0deg);
+    } to {
+        transform: rotateZ(720deg);
+    }
+    
+}
+
 body{
     background-image:url("heart-pink.gif");
     background-size:100vw 100vh;
     display:flex;
     width:100vw;
-    height:90vh;
+    height:100vh;
     align-items:center;
     justify-content: center;
     margin:0;
-    padding-top:10vh;
+    padding: 0;
     flex-direction: column;
 }
+
+
 .borzoi{
+    width: auto;
+    height: 100%;
     animation:13.07533s borzoi linear infinite alternate;
-    width:17%;
 }
+
+.cap {
+    width: 30vw;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detect:hover .cap {
+    animation: 0.25s hamburmusk linear infinite alternate;
+}
+
+.detect:hover .cap .borzoi { 
+    animation: 0.5s rotate linear infinite;
+}
+
 .borzoirow{
     padding:-5vh;
-    width:75vw;
+    width:90vw;
     display:flex;
     justify-content: space-between;
 }
